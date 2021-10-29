@@ -4,20 +4,21 @@ function myFunction(){
 }
 */
 
-$('#cntus').hide();
-
 $(document).ready(() => 
 { 
 	const $contactHide = $('#cntus');
 	$contactHide.hide();
 });
 
+$('#showContact').on('click', () => {
+ $('#cntus').show(); 
+});
 
 const myform = document.getElementById('shift');
-const fname = document.getElementById('fname');
-const lname = document.getElementById('lname');
-const email = document.getElementById('email');
-const phonenum = document.getElementById('phonenum');
+const fnameValue = document.getElementById('fname');
+const lnameValue = document.getElementById('lname');
+const emailValue = document.getElementById('email');
+const phonenumValue = document.getElementById('phonenum');
 const showError = document.getElementsByClassName('red-error');
 
 
@@ -28,7 +29,7 @@ myform.addEventListener('submit', e => {
 });
 
 function checkInputs() {
-	// trim to remove the whitespaces
+	//trim to remove the whitespaces
 	const fnameValue = fname.value.trim();
 	const lnameValue = lname.value.trim();
 	const emailValue = email.value.trim();
@@ -37,19 +38,19 @@ function checkInputs() {
 	
 	
 	if(fnameValue === '') {
-		setErrorFor(fname, 'First name cannot be blank');
+		setErrorFor(fname);
 	} else {
 		setSuccessFor(fname);
 	}
 	
 	if(lnameValue === '') {
-		setErrorFor(lname, 'Last name cannot be blank');
+		setErrorFor(lname);
 	} else {
 		setSuccessFor(lname);
 	}
 	
 	if(emailValue === '') {
-		setErrorFor(email, 'Email cannot be blank');
+		setErrorFor(email);
 	} else if (!isEmail(emailValue)) {
 		setErrorFor(email, 'Not a valid email');
 	} else {
@@ -57,17 +58,16 @@ function checkInputs() {
 	}
 	
 	if(phoneValue === '') {
-		setErrorFor(phonenum, 'Phone number cannot be blank');
+		setErrorFor(phonenum);
 	} else {
 		setSuccessFor(phonenum);
 	}
 	
 }
 
-function setErrorFor(input, message) {
+function setErrorFor(input) {
 	const formControl = input;
 	formControl.className = 'error';
-	/*small.innerText = message;*/
 }
 
 function setSuccessFor(input) {
